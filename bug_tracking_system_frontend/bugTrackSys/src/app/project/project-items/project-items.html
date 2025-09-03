@@ -1,0 +1,37 @@
+<div class="flex flex-wrap justify-center mt-10 gap-10">
+  <!-- card 1 -->
+
+  <div
+    class="px-10 pb-0 h-fit max-w-sm bg-white w-80 rounded-lg shadow-sm cursor-pointer"
+    *ngFor="let projectDetail of projectDetails"
+  >
+    <a
+      class="flex rounded-lg mt-5 pb-10 pt-3 flex-col"
+      [routerLink]="['/projects', projectDetail.id, 'bugs']"
+      [queryParams]="{ project: projectDetail.projectName }"
+    >
+      <img
+        class="w-14 mb-4 h-12 rounded-sm"
+        [src]="'data:image/;base64,' + projectDetail.image"
+        alt="Project Img"
+      />
+
+      <h1 class="font-[500] text-[16px]">{{ projectDetail.projectName }}</h1>
+      <div class="flex flex-col justify-between flex-grow">
+        <p
+          class="leading-relaxed line-clamp-2 text-[13px] pt-3 font-[400] text-[#87888C] dark:text-gray-300"
+        >
+          {{ projectDetail.projectDes }}
+        </p>
+        <p class="text-[13px] font-[400] pt-3  text-[#87888C]" *ngIf="projectDetail?.projectTotalTasks !== 0">
+          Task Done: <span class="text-[#000000] font-[500]"> {{projectDetail?.completedTasksCount}}/{{projectDetail?.projectTotalTasks}}</span>
+        </p>
+
+         <p class="text-[13px] font-[400] pt-3  text-[#87888C]" *ngIf="projectDetail?.projectTotalTasks === 0">
+           <span class="text-[#D80D0DFF] font-[500]">  Has No Task</span>
+        </p>
+        
+      </div>
+    </a>
+  </div>
+</div>

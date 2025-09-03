@@ -1,0 +1,228 @@
+<div class="flex flex-row h-[100vh] poppins">
+  <!-- image -->
+  <div class="hidden lg:flex">
+    <app-img></app-img>
+  </div>
+  <!-- selector for the user  -->
+
+  <div class="w-full flex flex-col justify-center items-center ps-0 md:ps-0">
+    <div
+      class="flex flex-col pb-2 justify-center items-start w-[350px] md:w-[390px]"
+    >
+      <div class="flex justify-start">
+        <h1 class="text-darkBlue text-[28px] font-[700] pb-7">Sign Up</h1>
+      </div>
+      <div class="hidden lg:block">
+        <p class="text-grey text-[16px] font-[400] w-[420px]">
+          Please fill your information below
+        </p>
+      </div>
+    </div>
+
+    <!-- sign up form -->
+
+    <div class="flex flex-col items-center lg:items-start">
+      <div class="">
+        <form
+          action=""
+          [formGroup]="signUpForm"
+          (ngSubmit)="onSubmitSignUpForm(signUpForm.value)"
+        >
+          <!-- for name -->
+          <div
+            class="w-[350px] md:w-[400px] my-3 ps-3 bg-lightBlue flex items-center rounded-lg"
+          >
+            <img src="assets/ContactIcon.svg" alt="" />
+
+            <input
+              type="text"
+              placeholder="Name"
+              required
+              formControlName="name"
+              class="py-4 ps-3 pe-2 text-[16px] text-blue71 placeholder-[#8b8fa8] focus:outline-none focus:ring-0 focus:border-transparent"
+              [ngClass]="{
+                'border-grey-300': !(
+                  signUpForm.get('name')?.invalid &&
+                  signUpForm.get('name')?.touched
+                ),
+                'border-red-500':
+                  signUpForm.get('name')?.invalid &&
+                  signUpForm.get('name')?.touched
+              }"
+            />
+          </div>
+
+          <p
+            *ngIf="
+              signUpForm.get('name')?.hasError('required') &&
+              signUpForm.get('name')?.touched
+            "
+            class="text-red-500 text-sm w-[350px] md:w-[400px]"
+          >
+            Name is required
+          </p>
+
+          <p
+            *ngIf="
+              signUpForm.get('name')?.hasError('maxlength') &&
+              (signUpForm.get('name')?.dirty || signUpForm.get('name')?.touched)
+            "
+            class="text-red-500 text-sm w-[350px] md:w-[400px]"
+          >
+            Name cannot be more than 12 characters long
+          </p>
+
+          <!-- mobile number  -->
+          <div
+            class="w-[350px] md:w-[400px] my-3 ps-3 bg-lightBlue flex items-center rounded-lg"
+          >
+            <img src="assets/MobileIcon.svg" alt="" />
+            <input
+              type="text"
+              placeholder="Mobile number"
+              required
+              formControlName="mobile_number"
+              class="py-4 ps-3 w-full pe-2 text-[16px] text-blue71 placeholder-[#8b8fa8] focus:outline-none focus:ring-0 focus:border-transparent"
+              [ngClass]="{
+                'border-grey-300': !(
+                  signUpForm.get('mobile_number')?.invalid &&
+                  signUpForm.get('mobile_number')?.touched
+                ),
+                'border-red-500':
+                  signUpForm.get('mobile_number')?.invalid &&
+                  signUpForm.get('mobile_number')?.touched
+              }"
+            />
+          </div>
+
+          <p
+            *ngIf="
+              signUpForm.get('mobile_number')?.hasError('required') &&
+              signUpForm.get('mobile_number')?.touched
+            "
+            class="text-red-500 text-sm w-[350px] md:w-[400px]"
+          >
+            Mobile number is required
+          </p>
+
+          <div
+            class="text-red-500 text-sm w-[350px] md:w-[400px]"
+            *ngIf="
+              signUpForm.get('mobile_number')?.hasError('pattern') &&
+              (signUpForm.get('mobile_number')?.dirty ||
+                signUpForm.get('mobile_number')?.touched)
+            "
+          >
+            Mobile number must follow patter +923XXXXXXXXXX / 03XXXXXXXXXX
+          </div>
+          <!-- email -->
+
+          <div
+            class="w-[350px] md:w-[400px] my-3 ps-3 bg-lightBlue flex items-center rounded-lg"
+          >
+            <img src="assets/EmailIcon.svg" alt="" />
+            <input
+              type="email"
+              placeholder="E-mail"
+              required
+              formControlName="email"
+              class="py-4 w-full pe-2 ps-3 text-[16px] text-blue71 placeholder-[#8b8fa8] focus:outline-none focus:ring-0 focus:border-transparent"
+              [ngClass]="{
+                'border-grey-300': !(
+                  signUpForm.get('email')?.invalid &&
+                  signUpForm.get('email')?.touched
+                ),
+                'border-red-500':
+                  signUpForm.get('email')?.invalid &&
+                  signUpForm.get('email')?.touched
+              }"
+            />
+          </div>
+
+          <p
+            *ngIf="
+              signUpForm.get('email')?.hasError('required') &&
+              signUpForm.get('email')?.touched
+            "
+            class="text-red-500 text-sm w-[350px] md:w-[400px]"
+          >
+            Email is required
+          </p>
+          <p
+            *ngIf="
+              signUpForm.get('email')?.hasError('pattern') &&
+              signUpForm.get('email')?.touched
+            "
+            class="text-red-500 text-sm w-[350px] md:w-[400px]"
+          >
+            Enter valid email
+          </p>
+          <!-- password -->
+          <div
+            class="w-[350px] md:w-[400px] my-3 ps-3 bg-lightBlue flex items-center rounded-lg"
+          >
+            <img src="assets/PasswordIcon.svg" alt="" />
+            <input
+              [type]="hide ? 'password' : 'text'"
+              placeholder="Password"
+              required
+              formControlName="password"
+              class="py-4 ps-3 w-full pe-2 text-[16px] text-blue71 placeholder-[#8b8fa8] focus:outline-none focus:ring-0 focus:border-transparent"
+              [ngClass]="{
+                'border-grey-300': !(
+                  signUpForm.get('password')?.invalid &&
+                  signUpForm.get('password')?.touched
+                ),
+                'border-red-500':
+                  signUpForm.get('password')?.invalid &&
+                  signUpForm.get('password')?.touched
+              }"
+            />
+            <mat-icon
+              class="pe-10 cursor-pointer color"
+              (click)="hide = !hide"
+              >{{ hide ? "visibility_off" : "visibility" }}</mat-icon
+            >
+          </div>
+
+          <p
+            *ngIf="
+              signUpForm.get('password')?.hasError('required') &&
+              signUpForm.get('password')?.touched
+            "
+            class="text-red-500 text-sm w-[350px] md:w-[400px]"
+          >
+            Password is required
+          </p>
+
+          <div
+            class="text-red-500 text-sm w-[350px] md:w-[400px]"
+            *ngIf="
+              signUpForm.get('password')?.hasError('pattern') &&
+              (signUpForm.get('password')?.dirty ||
+                signUpForm.get('password')?.touched)
+            "
+          >
+            Password must contain more than 8 characters, 1 numeric, 1 upper
+            case letter, and 1 special character($@$!%*?&).
+          </div>
+          <button
+            class="flex border-2 justify-center cursor-pointer mt-5 text-white items-center rounded-md w-[110px] h-[50px] bg-blue"
+          >
+            <div class="font-[500] text-[16px] ps-1 cursor-pointer">
+              Sign Up
+            </div>
+            <img src="assets/ForwardIcon.svg" alt="" />
+          </button>
+        </form>
+
+        <div class="border-b-2 mt-7 border-[#ececf0]"></div>
+
+        <div class="flex justify-between mt-7 text-[14px] md:text-[16px]">
+          <span class="text-grey pe-2">Already have an account?</span>
+          <a class="text-blue" routerLink="/login">Login to your account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

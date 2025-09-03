@@ -1,0 +1,173 @@
+<div class="flex flex-row poppins h-[100vh] md:ps-10 lg:ps-0 lg:py-0">
+  <!-- image -->
+  <div class="hidden lg:flex">
+    <app-img></app-img>
+  </div>
+  <!-- selector for the user  -->
+  <div class="w-full">
+    <div
+      class="flex justify-start w-full lg:justify-end px-7 my-7 text-[18px] font-semibold font-[500]"
+    >
+      <span class="text-grey cursor-pointer"
+        >Already have an account?
+        <a class="text-blue" routerLink="/login">Sign In</a></span
+      >
+    </div>
+
+    <div
+      class="flex flex-col justify-center items-center w-full h-[80vh] lg:h-[88vh]"
+    >
+      <div
+        class="flex sm:w-fit md:w-full mx-7 lg:mx-0 lg:my-0 lg:pe-7 lg:pb-0 ps-0 sm:justify-center md:justify-start md:ms-22 lg:ms-0 lg:ms-0 lg:justify-center"
+      >
+        <div class="mt-22 sm:mt-0">
+          <h1 class="text-start text-darkBlue text-[28px] font-[700] pb-7">
+            Join Us!
+          </h1>
+          <p
+            class="text-grey text-[16px] font-[400] text-start lg:mx-0 leading-6 lg:w-[420px]"
+          >
+            To begin this journey, tell us what type of account you'd be
+            opening.
+          </p>
+        </div>
+      </div>
+
+      <!-- For manager -->
+      <div
+        class="ms-2 lg:ms-0 mt-8 mb-10 shadow rounded-md :bg-lightBlue hover:border-2 hover:border-[#007DFA] cursor-pointer lg:w-fit"
+        routerLink="/signup"
+      >
+        <div
+          (mouseenter)="onManagerHover(true)"
+          (mouseleave)="onManagerHover(false)"
+          class="w-[90vw] lg:w-[446px] px-4 lg:px-0 h-[108px] flex justify-start lg:justify-center items-center"
+        >
+          <mat-card-content>
+            <div class="flex justify-around align-center gap-4">
+              <button
+                class="px-4 border-2 border-blue rounded-full cursor-pointer"
+                [ngClass]="isManagerHovered ? 'bg-blue' : 'bg-white'"
+              >
+                <img
+                  src="assets/ManagerIcon.svg"
+                  [ngClass]="
+                    isManagerHovered ? 'iconWhiteColor' : 'iconBlueColor'
+                  "
+                  alt=""
+                />
+              </button>
+
+              <div class="w-max-[200] lg:w-[20rem] ps-3">
+                <h1 class="text-[16px] font-[500] pb-1 text-darkBlue">
+                  Manager
+                </h1>
+                <p class="text-[14px] text-grey p-0">
+                  Signup as a manager to manage the tasks and bugs
+                </p>
+              </div>
+              <div
+                class="flex justify-center items-center"
+                *ngIf="isManagerHovered"
+              >
+                <div class="h-7 flex items-center justify-center">
+                  <img src="assets/ArrowIcon.svg" alt="" srcset="" />
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </div>
+      </div>
+
+      <!-- For developer -->
+
+      <div
+        class="ms-2 lg:ms-0 mb-10 rounded-md shadow hover:bg-lightBlue hover:border-2 hover:border-[#007DFA] cursor-pointer lg:w-fit"
+        routerLink="/signup"
+      >
+        <div
+          class="w-[90vw] lg:w-[446px] px-4 lg:px-0 h-[108px] flex justify-start lg:justify-center items-center"
+          (mouseenter)="onDeveloperHover(true)"
+          (mouseleave)="onDeveloperHover(false)"
+        >
+          <mat-card-content>
+            <div class="flex justify-around align-center gap-4">
+              <button
+                class="px-4 text-blue border-2 border-blue rounded-full cursor-pointer hover:"
+                [ngClass]="isDeveloperHovered ? 'bg-blue' : 'bg-white'"
+              >
+                <img
+                  src="assets/Developer.svg"
+                  [ngClass]="
+                    isDeveloperHovered ? 'iconWhiteColor' : 'iconBlueColor'
+                  "
+                  alt=""
+                />
+              </button>
+
+              <div class="w-max-[200] lg:w-[20rem] ps-3">
+                <h1 class="text-[16px] font-[500] pb-1 text-darkBlue">
+                  Developer
+                </h1>
+                <p class="text-[14px] text-grey p-0">
+                  Signup as a Developer to assign the relevant task to QA
+                </p>
+              </div>
+              <div class="flex justify-center items-center">
+                <div
+                  class="h-7 flex items-center justify-center"
+                  *ngIf="isDeveloperHovered"
+                >
+                  <img src="assets/ArrowIcon.svg" alt="" srcset="" />
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </div>
+      </div>
+
+      <!-- For QA  -->
+
+      <div
+        class="ms-2 lg:ms-0 rounded-md mb-10 cursor-pointer shadow hover:bg-lightBlue hover:border-2 hover:border-[#007DFA] lg:w-fit"
+        routerLink="/signup"
+      >
+        <div
+          class="w-[90vw] lg:w-[446px] px-4 lg:px-0 h-[108px] flex justify-start lg:justify-center items-center"
+          (mouseenter)="onQAHover(true)"
+          (mouseleave)="onQAHover(false)"
+        >
+          <mat-card-content>
+            <div class="flex justify-around align-center gap-4">
+              <button
+                class="px-4 text-blue border-2 border-blue rounded-full cursor-pointer hover:"
+                [ngClass]="isQAHovered ? 'bg-blue' : 'bg-white'"
+              >
+                <img
+                  src="assets/ManagerIcon.svg"
+                  [ngClass]="isQAHovered ? 'iconWhiteColor' : 'iconBlueColor'"
+                  alt=""
+                />
+              </button>
+
+              <div class="w-max-[200] lg:w-[20rem] ps-3">
+                <h1 class="text-[16px] font-[500] pb-1 text-darkBlue">QA</h1>
+                <p class="text-[14px] text-grey p-0">
+                  Signup as a QA to create the bugs and report in tasks
+                </p>
+              </div>
+              <div class="flex justify-center items-center">
+                <div
+                  class="h-7 flex items-center justify-center"
+                  *ngIf="isQAHovered"
+                >
+                  <img src="assets/ArrowIcon.svg" alt="" srcset="" />
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

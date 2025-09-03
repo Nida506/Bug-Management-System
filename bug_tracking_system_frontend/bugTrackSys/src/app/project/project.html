@@ -1,0 +1,106 @@
+<div
+  class="py-6 px-10 lg:px-30 bg-[#FAFAFA] flex flex-col justify-between min-h-[100vh]"
+>
+  <div class="">
+    <app-navbar></app-navbar>
+
+    <div class="border-b-1 mt-3 border-b-[#ECECEE]"></div>
+
+    <!-- project page  -->
+    <div>
+      <!-- project nav -->
+      <div
+        class="flex items-center border-b-1 border-l-3 border-[#50A885] mt-3 border-b-[#ECECEE] pb-5 justify-between gap-10 ps-5"
+      >
+        <!-- project owner -->
+        <div class="mt-5 me-3">
+          <p class="font-[500] text-[16px] pb-2">Projects</p>
+          <span
+            class="hidden flex:block font-[400] text-[14px] text-[#AEAEAE] flex"
+            >Hi {{ loggedInUser?._value.name }}, welcome
+            <span class="hidden xl:block">to ManageBug</span></span
+          >
+        </div>
+
+        <!-- search the project -->
+        <div
+          class="hidden xl:flex gap-3 ps-4 bg-[#F1F1F1] py-4 rounded-sm items-center mt-4"
+        >
+          <img src="assets/Search.svg" alt="" />
+
+          <input
+            type="text"
+            [formControl]="searchControl"
+            placeholder="Search for Projects here"
+            class="placeholder-[#6E6F72] w-full pe-2 font-[400] text-[15px] outline-none focus:ring-0 focus:border-transparent"
+          />
+        </div>
+
+        <!-- button -->
+
+        <button
+          class="px-6 py-4 me-2 disabled:bg-gray-300 disabled:border-0 disabled:opacity-50 text-white bg-[#007DFA] mt-4 rounded-sm cursor-pointer"
+          (click)="openDialog()"
+          [disabled]="isManager"
+        >
+          + Add New Project
+        </button>
+
+        <div
+          class="hidden xl:flex py-4 flex gap-3 mt-4 rounded-sm cursor-pointer font-[400] text-[#000000]"
+        >
+          <span>Sort by</span>
+          <div class="dropdown dropdown-end ms-5">
+            <div tabindex="0" role="button" class="">
+              <img src="assets/Dropdown.svg" alt="" />
+            </div>
+            <ul
+              tabindex="0"
+              class="menu menu-sm border-2 border-[#007DFA] dropdown-content bg-base-100 rounded-box z-1 w-35 mt-3 p-2 shadow"
+            >
+              <li>
+                <a class="text-sm font-[500]" (click)="onClickSortByName()"
+                  >Sort by Name</a
+                >
+              </li>
+              <li>
+                <a class="text-sm font-[500]" (click)="onClickSoryByDate()"
+                  >Sort by Date</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <button
+          class="hidden xl:flex px-2 py-4 mt-4 font-[400] text-[#000000] rounded-sm cursor-pointer"
+        >
+          My Projects
+        </button>
+
+        <button class="hidden xl:flex bg-[#007DFA] py-3 rounded-sm px-5 mt-4">
+          <img src="assets/MiniLogo.svg" alt="" />
+        </button>
+      </div>
+
+      <div class="pb-3 mt-10">
+        <app-project-items
+          [page]="currentPageNumber"
+          (totalProjects)="receiveDataFromChild($event)"
+        ></app-project-items>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-end justify-end h-[20vh] w-full pt-10 bg-[#FAFAFA]">
+    <mat-paginator
+      [length]="this.totalRecords"
+      [pageSize]="this.limit"
+      [pageSizeOptions]="[1, 5, 10, 25, 100]"
+      aria-label="Select page"
+      (page)="onPageChange($event)"
+    >
+      >
+    </mat-paginator>
+  </div>
+</div>

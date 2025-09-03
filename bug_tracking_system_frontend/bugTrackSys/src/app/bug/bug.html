@@ -1,0 +1,309 @@
+<div
+  class="py-6 px-10 md:px-30 bg-[#FAFAFA] flex flex-col justify-between min-h-[100vh]"
+>
+  <div class="">
+    <app-navbar></app-navbar>
+    <div class="border-b-1 mt-3 border-b-[#ECECEE]"></div>
+    <!-- Bug page nav -->
+
+    <div class="flex justify-between items-center">
+      <div class="mt-5 flex flex-col items-start gap-5 justify-center">
+        <!-- project Name -->
+        <div class="hidden xl:flex gap-2 flex justify-center items-center">
+          <span class="text-[12px] font-[400] text-[#5B6871]">Projects</span>
+          <img src="assets/ForwardIcon.svg" alt="" class="color" />
+          <span class="text-[#000000] text-[12px]">{{ this.projectName }}</span>
+        </div>
+        <!-- All bug listing -->
+
+        <div class="flex justify-center items-center">
+          <span class="text-[15px] xl:text-[36px] font-[700]"
+            >All bugs listing</span
+          >
+          <button
+            class="hidden xl:block ms-3 px-3 py-2 bg-[#FDF2F2] text-[#EC5962]"
+          >
+            Bugs
+          </button>
+        </div>
+      </div>
+
+      <div class="flex justify-center items-center gap-3 mt-4 xl:mt-0">
+        <button
+          class="hidden xl:block border-1 rounded-sm p-1 border-[#D0D5DD] cursor-pointer"
+        >
+          <img src="assets/Setting.svg" alt="" />
+        </button>
+        <!-- assign developers and  QA -->
+        <button
+          class="border-1 rounded-sm p-1 disabled:bg-gray-300 disabled:border-0 disabled:opacity-50 border-[#D0D5DD] cursor-pointer"
+          (click)="openAddMembersToProjectDialog()"
+          [disabled]="assignBtn"
+        >
+          <img src="assets/AssignUsers.svg" alt="" />
+        </button>
+        <!-- add new bug -->
+        <button
+          class="border-2 bg-[#007DFA] disabled:bg-gray-300 disabled:border-0 disabled:opacity-50 text-white px-10 text-[14px] py-[8px] rounded-md cursor-pointer"
+          (click)="openAddBugDialog()"
+          [disabled]="addTask"
+        >
+          + New Bug
+        </button>
+      </div>
+    </div>
+
+    <div class="border-b-1 mt-3 border-b-[#ECECEE]"></div>
+
+    <div class="hidden xl:flex mt-5 flex justify-between items-center">
+      <!-- search bug -->
+      <div
+        class="p-2 rounded-sm w-70 border-1 border-[#DDE2E4] flex items-center justify-center"
+      >
+        <img src="assets/Searching.svg" alt="" />
+
+        <input
+          type="text"
+          [formControl]="searchControl"
+          placeholder="Search"
+          class="text-[17px] ps-1 w-[200px] placeholder-[#9AA6AC] focus:outline-none"
+        />
+      </div>
+
+      <!-- sub tasks  , mee , assignees -->
+      <div class="flex items-center gap-3">
+        <div class="flex justify-center items-center">
+          <span class="text-[14px] text-[#252C32] font-[400]">Subtasks</span>
+          <img src="assets/DropdownMini.svg" alt="" />
+        </div>
+
+        <div class="flex justify-center items-center">
+          <span class="text-[14px] text-[#252C32] font-[400]">Me</span>
+          <img src="assets/DropdownMini.svg" alt="" />
+        </div>
+
+        <div class="flex justify-center items-center">
+          <span class="text-[14px] text-[#252C32] font-[400]">Assignees</span>
+          <img src="assets/DropdownMini.svg" alt="" />
+        </div>
+      </div>
+
+      <!-- some btns -->
+
+      <div class="flex items-center justify-center gap-3">
+        <button class="border-1 border-[#D0D5DD] rounded-md p-2 cursor-pointer">
+          <img src="assets/AlignCenter.svg" alt="" />
+        </button>
+
+        <button class="border-1 border-[#D0D5DD] rounded-md p-2 cursor-pointer">
+          <img src="assets/AlignStart.svg" alt="" />
+        </button>
+
+        <img src="assets/AlignJustify.svg" alt="" />
+      </div>
+    </div>
+
+    <div class="hidden xl:block border-b-1 mt-3 border-b-[#ECECEE]"></div>
+
+    <!-- bug detail -->
+
+    <div class="mb-0 pb-4 w-full">
+      <table class="w-full">
+        <tr
+          class="flex mt-8 px-7 flex items-center justify-between bg-[#f1f5f9] py-5 border-b-1 border-b-[#344054]"
+        >
+          <th class="flex items-center">
+            <input
+              type="checkbox"
+              class="border-[#3A3541AD] scale-120 w-15 cursor-pointer"
+            />
+          </th>
+          <th
+            class="border-l-1 text-[13px] border-l-[#3A35411F] text-[#3A3541DE] w-30 text-start ps-3"
+          >
+            TITLE
+          </th>
+          <th
+            class="hidden md:block border-l-1 text-[13px] border-l-[#3A35411F] text-[#3A3541DE] w-68 text-start ps-3"
+          >
+            DETAILS
+          </th>
+          <th
+            class="hidden lg:block border-l-1 text-[13px] border-l-[#3A35411F] text-[#3A3541DE] w-40 text-center"
+          >
+            STATE
+          </th>
+          <th
+            class="hidden lg:block border-l-1 text-[13px] border-l-[#3A35411F] text-[#3A3541DE] w-40 text-center"
+          >
+            STATUS
+          </th>
+          <th
+            class="hidden xl:block border-l-1 text-[13px] border-l-[#3A35411F] text-[#3A3541DE] w-40 text-center"
+          >
+            DUE DATE
+          </th>
+          <th
+            class="hidden xl:block border-l-1 text-[13px] border-l-[#3A35411F] text-[#3A3541DE] w-40 text-center"
+          >
+            ASSIGNED TO
+          </th>
+          <th
+            class="border-x-1 text-[13px] border-x-[#3A35411F] text-[#3A3541DE] w-25 text-start ps-3"
+          >
+            ACTION
+          </th>
+        </tr>
+
+        <!-- show bug with details -->
+
+        <div>
+          @for (bug of bugDetails ; track bug.id) {
+          <tr
+            class="flex py-4 px-7 items-center justify-between cursor-pointer border-b-1 border-b-[#344054]"
+          >
+            <td
+              class="border-[#3A3541AD] scale-120 cursor-pointer text-center w-15 justify-center"
+            >
+              <input type="checkbox" />
+            </td>
+
+            <div (click)="openEditBugDialog(bug)" class="flex">
+              <td
+                class="truncate max-w-[20ch] font-[500] text-[13px] text-[#3A3541DE] w-30 text-start ps-3"
+              >
+                {{ bug.title }}
+              </td>
+
+              <td
+                class="hidden md:flex text-[15px] text-[#3A3541AD] gap-3 ps-3 w-68 justify-start items-center"
+              >
+                <img
+                  src="assets/Bullet.svg"
+                  alt=""
+                  [ngClass]="
+                    bug.status === 'new'
+                      ? 'danger'
+                      : bug.status === 'started'
+                      ? 'primary'
+                      : 'success'
+                  "
+                />
+                <span class="truncate max-w-[25ch] block">
+                  {{ bug.description }}</span
+                >
+              </td>
+              <td
+                class="hidden lg:block font-[500] text-[13px] text-[#3A3541DE] w-40 text-center"
+              >
+                {{ bug.type }}
+              </td>
+              <td class="hidden lg:block text-center w-40">
+                <span
+                  class="text-[13px] py-2 px-3 font-[500]"
+                  [ngClass]="
+                    bug.status === 'new'
+                      ? 'text-[#EC5962] bg-[#FDF2F2]'
+                      : bug.status === 'started'
+                      ? 'text-[#3069FE] bg-[#EEF3FF]'
+                      : 'text-[#00B894] bg-[#E0F7F1]'
+                  "
+                  >{{ bug.status }}</span
+                >
+              </td>
+              <td
+                class="hidden xl:block font-[500] text-[13px] text-[#3A3541DE] w-40 text-center"
+              >
+                {{ bug.deadline }}
+              </td>
+              <td
+                class="hidden xl:flex whitespace-normal break-words flex text-[13px] text-[#3A3541DE] w-40 justify-center font-[500]"
+              >
+                {{ bug.developerNames }}
+              </td>
+            </div>
+
+            <td
+              (click)="showChangeStatus(bug.id)"
+              class="text-[13px] flex text-[#3A3541DE] w-25 text-start justify-center relative"
+            >
+              <img src="assets/TripleColon.svg" alt="" />
+              <div
+                class="z-10 bg-white w-33 absolute ps-2 py-2 pe-1 border-1 mt-4 shadow rounded-sm"
+                *ngIf="this.chosenBug === bug.id"
+              >
+                <div class="flex justify-between pb-2">
+                  <h1 class="text-[11px] font-[500] font-bold">
+                    Change Status
+                  </h1>
+                  <mat-icon
+                    (click)="this.chosenBug = ''; $event.stopPropagation()"
+                    class="close"
+                  >
+                    close
+                  </mat-icon>
+                </div>
+
+                <div class="flex flex-col items-start pb-3 gap-2">
+                  <button
+                    class="bg-[#FDF2F2] text-[#EC5962] px-5 py-1 rounded-sm cursor-pointer"
+                    (click)="choosenStatus(bug.id, 'new', bug.type)"
+                  >
+                    new
+                  </button>
+                  <button
+                    class="text-[#3069FE] bg-[#EEF3FF] px-5 py-1 rounded-sm cursor-pointer"
+                    (click)="choosenStatus(bug.id, 'started', bug.type)"
+                  >
+                    started
+                  </button>
+                  <button
+                    class="text-[#00B894] bg-[#E0F7F1] px-5 py-1 rounded-sm cursor-pointer"
+                    *ngIf="bug.type === 'feature'"
+                    (click)="choosenStatus(bug.id, 'completed', bug.type)"
+                  >
+                    completed
+                  </button>
+                  <button
+                    (click)="choosenStatus(bug.id, 'resolved', bug.type)"
+                    class="text-[#00B894] bg-[#E0F7F1] px-5 py-1 rounded-sm cursor-pointer"
+                    *ngIf="bug.type === 'bug'"
+                  >
+                    resolved
+                  </button>
+                </div>
+                <div
+                  (click)="deleteBug(bug.id)"
+                  class="flex w-full px-2 justify-between cursor-pointer delete py-1 border-t-1 border-t-[#65676B]"
+                >
+                  <button class="text-[13px] cursor-pointer">Delete</button>
+
+                  <img src="assets/Delete.svg" alt="" />
+                </div>
+              </div>
+            </td>
+          </tr>
+          } @empty {
+          <div class="flex pt-3 justify-center items-center">
+            No task found.
+          </div>
+          }
+        </div>
+      </table>
+    </div>
+  </div>
+
+  <div
+    class="flex items-end justify-end h-[15vh] md:h-[10vh] bg-[#FAFAFA] mt-35 w-full"
+  >
+    <mat-paginator
+      [length]="this.totalRecords"
+      [pageSize]="this.limitt"
+      [pageSizeOptions]="[1, 5, 10, 25, 100]"
+      aria-label="Select page"
+      (page)="onPageChange($event)"
+    >
+      >
+    </mat-paginator>
+  </div>
+</div>

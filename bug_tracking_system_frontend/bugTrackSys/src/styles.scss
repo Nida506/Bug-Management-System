@@ -1,0 +1,52 @@
+@use "@angular/material" as mat;
+@import "tailwindcss";
+@plugin "daisyui";
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+} /* You can add global styles to this file, and also import other style files */
+
+@theme {
+  /* Custom Colors */
+  --color-blue: #007dfa;
+  --color-blue71: #3c4071;
+  --color-darkBlue: #2f3367;
+  --color-lightBlue: #f5f5f7;
+  --color-grey: #8692a6;
+  --color-greyA8: #8b8fa8;
+  --color-greyF0: #ececf0;
+}
+
+html,
+body {
+  font-family: "Poppins";
+}
+body {
+  margin: 0;
+}
+
+.popup {
+  background-color: #00000059;
+  backdrop-filter: blur(5px);
+}

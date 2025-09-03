@@ -1,0 +1,70 @@
+<div class="navbar flex justify-between">
+  <div class="flex" routerLink="/projects" class="cursor-pointer">
+    <img src="assets/Logo.svg" alt="" />
+  </div>
+
+  <!-- center of the navbar -->
+
+  <div class="flex gap-10 hidden lg:flex">
+    <!-- for projects -->
+    <div class="flex items-center gap-1 cursor-pointer" routerLink="/projects">
+      <img src="assets/Projects.svg" alt="" />
+      <span class="text-[12px] font-[500] text-[#2F3367]">Projects</span>
+    </div>
+
+    <!-- for tasks -->
+    <div class="flex items-center gap-1">
+      <img src="assets/Tasks.svg" alt="" />
+
+      <span class="text-[12px] font-[500] text-[#787486]">Tasks</span>
+    </div>
+
+    <!-- for manage -->
+    <div class="flex items-center gap-1">
+      <img src="assets/Manage.svg" alt="" />
+
+      <span class="text-[12px] font-[500] text-[#787486]">Manage</span>
+    </div>
+
+    <!-- for users -->
+    <div class="flex items-center gap-1">
+      <img src="assets/Users.svg" alt="" />
+
+      <span class="text-[12px] font-[500] text-[#787486]">Users</span>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <!-- for notification -->
+    <div class="hidden lg:flex">
+      <img src="assets/Notification.svg" alt="" />
+    </div>
+
+    <!-- for email -->
+    <div class="hidden lg:flex">
+      <img src="assets/IncomingEmail.svg" alt="" />
+    </div>
+
+    <div class="w-10 flex items-center gap-2">
+      <img
+        class="rounded-full"
+        alt="Tailwind CSS Navbar component"
+        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+      />
+    </div>
+    <span class="font-[500] text-md">{{ loggedInUser?._value.name }}</span>
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-[#007DFA] btn-circle">
+        <img src="assets/Dropdown.svg" alt="" />
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm w-22 flex justify-center items-center border-2 border-[#007DFA] dropdown-content bg-base-100 rounded-box py-1 shadow"
+      >
+        <li>
+          <a class="text-sm font-[500]" (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

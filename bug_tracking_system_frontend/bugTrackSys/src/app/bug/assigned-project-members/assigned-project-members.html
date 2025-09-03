@@ -1,0 +1,38 @@
+<div class="px-10 pb-10 pt-5 w-96">
+  <div class="w-full flex justify-between cursor-pointer">
+    <h1 class="mb-5 text-lg font-[500]">Assign Users to the Projects</h1>
+    <mat-icon (click)="onCloseDialog()" class="">close</mat-icon>
+  </div>
+
+  <div class="flex gap-3">
+    <form class="">
+      <input
+        [formControl]="searchName"
+        (focus)="onFocus()"
+        [value]="selectedUserName"
+        type="text"
+        class="px-5 py-2 rounded-sm border-2 w-full"
+        placeholder="Search Users here"
+      />
+      <ul *ngIf="users.length > 0" class="dropdown-list border-b-2">
+        @for (user of users ; track user.id) {
+        <li
+          (click)="onDropdownClick($event, user.id, user.name, user.email)"
+          class="dropdown-item border-l-2 border-r-2 cursor-pointer py-1 ps-5 hover:bg-[#007DFA] text-md"
+        >
+          <button>{{ user.name }}</button>
+        </li>
+        } @empty {
+        <div class="flex pt-3 justify-center items-center">No user.</div>
+        }
+      </ul>
+    </form>
+
+    <button
+      (click)="assignUser()"
+      class="border-2 rounded-sm px-2 py-2 h-10 cursor-pointer flex"
+    >
+      Add <span class="ps-1 hidden sm:flex">User</span>
+    </button>
+  </div>
+</div>

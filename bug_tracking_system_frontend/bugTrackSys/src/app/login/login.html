@@ -1,0 +1,122 @@
+<div class="flex flex-row h-[100vh]">
+  <!-- image -->
+  <div class="hidden lg:flex">
+    <app-img></app-img>
+  </div>
+  <!-- selector for the user  -->
+
+  <div class="w-full flex flex-col justify-center items-center md:ps-0">
+    <div
+      class="flex flex-col pb-2 justify-center items-start w-[350px] ms-0 md:w-[390px]"
+    >
+      <div class="flex justify-start w-96 lg:w-0">
+        <h1 class="text-darkBlue text-[28px] font-[700] pb-7">Login</h1>
+      </div>
+      <div class="hidden lg:block">
+        <p class="text-grey text-[16px] font-[400] w-[420px]">
+          Please enter your login details
+        </p>
+      </div>
+    </div>
+
+    <!-- login  form -->
+
+    <div class="flex flex-col items-center lg:items-start">
+      <div class="">
+        <form
+          action=""
+          [formGroup]="signInForm"
+          (ngSubmit)="onSubmitSignInForm(signInForm.value)"
+        >
+          <!-- email -->
+
+          <div
+            class="w-[350px] md:w-[400px] my-3 ps-3 bg-lightBlue flex items-center rounded-lg"
+          >
+            <img src="assets/EmailIcon.svg" alt="" />
+
+            <input
+              type="email"
+              placeholder="E-mail"
+              required
+              formControlName="email"
+              class="py-4 pe-2 ps-3 text-[16px] text-blue71 placeholder-[#8B8FA8] focus:outline-none focus:ring-0 focus:border-transparent"
+              [ngClass]="{
+                'border-grey-300': !(
+                  signInForm.get('email')?.invalid &&
+                  signInForm.get('email')?.touched
+                ),
+                'border-red-500':
+                  signInForm.get('email')?.invalid &&
+                  signInForm.get('email')?.touched
+              }"
+            />
+          </div>
+
+          <p
+            *ngIf="
+              signInForm.get('email')?.hasError('required') &&
+              signInForm.get('email')?.touched
+            "
+            class="text-red-500 text-sm"
+          >
+            Email is required
+          </p>
+
+          <!-- password -->
+          <div
+            class="w-[350px] md:w-[400px] my-3 ps-3 bg-lightBlue flex items-center rounded-lg"
+          >
+            <img src="assets/PasswordIcon.svg" alt="" />
+
+            <input
+              [type]="hide ? 'password' : 'text'"
+              placeholder="Password"
+              required
+              formControlName="password"
+              class="py-4 ps-3 w-full pe-2 text-[16px] text-blue71 placeholder-[#8B8FA8] focus:outline-none focus:ring-0 focus:border-transparent"
+              [ngClass]="{
+                'border-grey-300': !(
+                  signInForm.get('password')?.invalid &&
+                  signInForm.get('password')?.touched
+                ),
+                'border-red-500':
+                  signInForm.get('password')?.invalid &&
+                  signInForm.get('password')?.touched
+              }"
+            />
+            <mat-icon
+              class="pe-10 cursor-pointer color"
+              (click)="hide = !hide"
+              >{{ hide ? "visibility_off" : "visibility" }}</mat-icon
+            >
+          </div>
+
+          <p
+            *ngIf="
+              signInForm.get('password')?.hasError('required') &&
+              signInForm.get('password')?.touched
+            "
+            class="text-red-500 text-sm"
+          >
+            Password is required
+          </p>
+
+          <button
+            class="flex border-2 justify-center cursor-pointer mt-5 text-white items-center px-3 rounded-md w-[110px] h-[50px] bg-[#007DFA]"
+          >
+            <div class="font-[500] text-[16px] ps-1">Login</div>
+            <img src="assets/ForwardIcon.svg" alt="" />
+          </button>
+        </form>
+
+        <div class="border-b-2 mt-7 border-[#ECECF0]"></div>
+
+        <div class="flex justify-between mt-7 text-[14px] md:text-[16px]">
+          <span class="text-grey pe-2">Don’t have an account account?</span>
+          <a class="text-blue" routerLink="/">Create account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
