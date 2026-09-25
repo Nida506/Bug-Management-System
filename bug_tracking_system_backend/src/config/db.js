@@ -1,4 +1,5 @@
 const sequelize = require("sequelize");
+
 const db = new sequelize(
   process.env.DB_NAME,
   process.env.DB_USERNAME,
@@ -7,6 +8,13 @@ const db = new sequelize(
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     dialect: process.env.DB_DIALECT,
+
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
   }
 );
 

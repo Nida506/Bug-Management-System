@@ -10,6 +10,7 @@ const { userRouter } = require("./routes/user");
 const { projectRouter } = require("./routes/project");
 const { bugRouter } = require("./routes/bug");
 const { authRouter } = require("./routes/auth");
+const { healthRouter } = require("./routes/health");
 
 // +++++++++++++++++++ imports end ++++++++++++++++++++++++++++++++++++++
 app.use(
@@ -24,6 +25,7 @@ app.use(
 app.use(express.json());
 
 app.use(cookieParser());
+app.use("/", healthRouter);
 app.use("/", userRouter);
 app.use("/", authRouter);
 app.use("/", projectRouter);
@@ -38,7 +40,7 @@ const startServer = async () => {
     console.log("All models were synchronized successfully.");
 
     app.listen(process.env.SERVER_PORT, () => {
-      console.log(`Server is running on port `);
+      console.log(`Server is running on port ${process.env.SERVER_PORT}`);
     });
   } catch (error) {
     console.error("Unable to connect to the database:", error);

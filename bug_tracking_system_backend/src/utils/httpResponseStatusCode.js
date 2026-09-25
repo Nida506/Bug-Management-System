@@ -6,6 +6,7 @@ const HTTP_RESPONSE_STATUS_CODES = {
   not_found: 404,
   conflict: 409,
   internal_server_error: 500,
+  service_unavailable: 503,
 };
 
 module.exports = { HTTP_RESPONSE_STATUS_CODES };
