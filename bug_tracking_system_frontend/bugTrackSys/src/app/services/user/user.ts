@@ -34,7 +34,7 @@ export class User {
       user_type: this.user_type,
     };
     // api call made
-    this.http.post('http://localhost:8000/signup', reqBody).subscribe({
+    this.http.post(`${environment.url}/signup`, reqBody).subscribe({
       next: (response: any) => {
         this.loggedInUserInfo$.next(response.data);
         this.ToastrService.success(response.message, 'Success');

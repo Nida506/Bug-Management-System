@@ -1,0 +1,13 @@
+node_modules
+dist
+.git
+.gitignore
+.angular
+.vscode
+coverage
+*.md
+npm-debug.log
+.gitkeep
+.env
+.env.local
+.env.*.local
