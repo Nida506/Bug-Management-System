@@ -8,7 +8,7 @@ healthRouter.get("/health", async (req, res) => {
     await db.authenticate();
     res.status(HTTP_RESPONSE_STATUS_CODES.ok).json({
       status: "oks",
-      database: "up",
+      database: "ups",
     });
   } catch (error) {
     res.status(HTTP_RESPONSE_STATUS_CODES.service_unavailable).json({
