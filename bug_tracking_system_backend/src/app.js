@@ -26,10 +26,10 @@ app.use(express.json());
 
 app.use(cookieParser());
 app.use("/", healthRouter);
-app.use("/", userRouter);
-app.use("/", authRouter);
-app.use("/", projectRouter);
-app.use("/", bugRouter);
+app.use("/api/v1", userRouter);
+app.use("/api/v1", authRouter);
+app.use("/api/v1", projectRouter);
+app.use("/api/v1", bugRouter);
 
 const startServer = async () => {
   try {

@@ -8,13 +8,13 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY package.json package-lock.json ./
+
 RUN npm ci --omit=dev
 
 COPY src ./src
-COPY .env .env
-RUN cp .env src/.env
 
 ENV NODE_ENV=production
+
 EXPOSE 8000
 
 CMD ["node", "src/app.js"]
